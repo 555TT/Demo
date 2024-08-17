@@ -1,0 +1,21 @@
+server:
+  port: 7777
+  application:
+    name: redis_distributed_lock
+spring:
+  redis:
+    host: 127.0.0.1
+    password: 123456
+    port: 6379
+    database: 0
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        max-idle: 8
+        min-idle: 0
+#  datasource:
+#    username: root
+#    password: wanghaoran666
+#    url: jdbc:mysql://127.0.0.1:3306/mytest?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false
+#    driver-class-name: com.mysql.cj.jdbc.Driver

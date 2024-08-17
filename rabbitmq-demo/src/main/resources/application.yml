@@ -1,0 +1,13 @@
+server:
+  port: 80
+spring:
+  rabbitmq:
+    host: localhost
+    username: guest
+    password: guest
+    port: 5672
+    publisher-returns: true #队列确认
+    publisher-confirm-type: correlated #交换机确认
+    listener:
+      simple:
+        acknowledge-mode: manual #消费者手动应答
