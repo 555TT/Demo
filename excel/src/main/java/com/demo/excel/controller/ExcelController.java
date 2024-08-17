@@ -19,6 +19,11 @@ public class ExcelController {
     @Resource
     private ExcelService excelService;
 
+    /**
+     * 使用easyexcel从数据库中导入excel并下载
+     * @param response
+     * @return
+     */
     @GetMapping("/download")
     public String download(HttpServletResponse response){
         excelService.download(response);
