@@ -1,5 +1,6 @@
 package spring.service.impl;
 
+import org.springframework.boot.CommandLineRunner;
 import spring.entity.Order;
 import spring.dao.OrderDao;
 import spring.service.OrderService;
@@ -14,7 +15,7 @@ import javax.annotation.Resource;
  * @since 2024-07-05 18:03:53
  */
 @Service
-public class OrderServiceImpl implements OrderService {
+public class OrderServiceImpl implements OrderService, CommandLineRunner {
     @Resource
     private OrderDao orderDao;
 
@@ -62,5 +63,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public boolean deleteById(Integer id) {
         return this.orderDao.deleteById(id) > 0;
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        System.out.println("测试CommandLineRunner接口");
     }
 }
