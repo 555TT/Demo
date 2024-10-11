@@ -1,4 +1,4 @@
-package other.交替打印;
+package other.并发.交替打印;
 
 /**
  * @author: 小手WA凉

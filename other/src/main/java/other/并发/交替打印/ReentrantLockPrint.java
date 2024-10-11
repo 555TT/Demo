@@ -1,4 +1,4 @@
-package other.交替打印;
+package other.并发.交替打印;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
