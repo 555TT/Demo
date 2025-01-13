@@ -124,9 +124,9 @@ public class MyBlockingQueue<T> {
     /**
      * 带超时时间的阻塞添加
      *
-     * @param task
-     * @param timeout
-     * @param unit
+     * @param task 任务
+     * @param timeout 超时时间
+     * @param unit 事件单位
      */
     public boolean offer(T task, long timeout, TimeUnit unit) {
         lock.lock();

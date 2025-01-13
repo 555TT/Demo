@@ -1,5 +1,8 @@
 package other.并发.threadpool;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.HashSet;
 import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
@@ -11,6 +14,8 @@ import java.util.concurrent.TimeUnit;
  * @create: 2025-01-10
  */
 public class MyThreadPool implements Executor {
+
+    Logger logger = LoggerFactory.getLogger(getClass());
     /**
      * 任务队列
      */
@@ -19,7 +24,7 @@ public class MyThreadPool implements Executor {
     /**
      * 线程集合
      */
-    private HashSet<Thread> threads = new HashSet<>();
+    public HashSet<Thread> threads = new HashSet<>();
 
     /**
      * 核心线程数
@@ -44,8 +49,8 @@ public class MyThreadPool implements Executor {
                 Worker worker = new Worker(command);
                 worker.start();
                 threads.add(worker);
-            }else if(taskQueue.offer(command,500L, TimeUnit.MILLISECONDS)){
-                rejectPolicy.reject(taskQueue,command);
+            }else{
+                taskQueue.tryPut(command,rejectPolicy);
             }
         }
     }
@@ -61,11 +66,13 @@ public class MyThreadPool implements Executor {
         @Override
         public void run() {
             Runnable task = firstTask;
-            while (task != null || (task = taskQueue.take()) != null) {
+            //如果这里换成take阻塞获取，则没任务时也会卡在while这里，线程池不会关闭
+            while (task != null || (task = taskQueue.poll(500L, TimeUnit.MILLISECONDS)) != null) {
                 task.run();
                 task = null;
             }
             synchronized (threads) {
+                logger.info("remove线程");
                 threads.remove(this);
             }
         }
