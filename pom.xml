@@ -15,6 +15,7 @@
         <module>excel</module>
         <module>netty</module>
         <module>kafka-Demo</module>
+        <module>elasticsearch-demo</module>
     </modules>
 
     <properties>
