@@ -30,8 +30,8 @@ public class HeapSort {
             adjustHeap(arr, i, arr.length);
         }
 
-        //调整堆结构+交换堆顶元素与末尾元素
-        for (int i = arr.length - 1; i > 0; i--) {//结束条件是>0，最后一个元素不需要动了
+        //调整堆结构+交换堆顶元素与当前末尾元素，arr[0]是堆顶元素，arr[i]是当前末尾元素
+        for (int i = arr.length - 1; i > 0; i--) {//结束条件是>0，最后剩一个元素不需要动了
             //将堆顶元素与末尾元素进行交换
             int temp = arr[i];
             arr[i] = arr[0];
