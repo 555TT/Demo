@@ -3,11 +3,17 @@ package 排序算法;
 /**
  * 快速排序
  * 注意点：while循环中线从右往左找；一定要先将基准元素交换到最左边，然后while退出后再将基准元素交换到正确位置
- *
+ *平均时间复杂度为O(nlogn),最坏为O(n2)
  * @author: wanghaoran1
  * @create: 2025-02-26
  */
 public class QuickSort {
+    /**
+     *
+     * @param arr 要排序的数组
+     * @param left 左索引
+     * @param right 右索引
+     */
     public static void quickSort(int[] arr, int left, int right) {
         if (left >= right) {
             return;
