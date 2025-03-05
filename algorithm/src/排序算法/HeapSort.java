@@ -8,7 +8,13 @@ package 排序算法;
  */
 public class HeapSort {
     public static void main(String[] args) {
-        int[] arr = {16, 7, 3, 20, 17, 8, 17};
+        /**
+         * 从下标0开始存储完全二叉树，下标为i的结点，几个性质：
+         * 左子结点下标：2*i+1，右子结点：2*i+2
+         * 父结点：(i-1)/2
+         * 最后一个非叶子结点：(length-1)/2
+         */
+        int[] arr = {5, 1, 1, 2, 0, 0};
 
         heapSort(arr);
 
@@ -25,7 +31,7 @@ public class HeapSort {
      */
     private static void heapSort(int[] arr) {
         //创建堆
-        for (int i = (arr.length - 1) / 2; i >= 0; i--) {
+        for (int i = (arr.length) / 2 - 1; i >= 0; i--) {
             //从第一个非叶子结点从下至上，从右至左调整结构
             adjustHeap(arr, i, arr.length);
         }
@@ -58,7 +64,8 @@ public class HeapSort {
         while (lChild < length) {
             //右孩子索引
             int rChild = lChild + 1;
-            // 如果有右孩子结点，并且右孩子结点的值大于左孩子结点，则选取右孩子结点
+            // 如果有右孩子结点，并且右孩子结点的值大于左孩子结点，则选取右孩子结点。
+            // 所以这里如果成立，后面的lChild都是指向的右孩子
             if (rChild < length && arr[lChild] < arr[rChild]) {
                 lChild++;
             }
