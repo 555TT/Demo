@@ -7,7 +7,7 @@ import static kafka.Test.consumer;
  * @create: 2024-10-26
  */
 public class Consumer {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         consumer();
     }
 }
