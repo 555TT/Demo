@@ -1,10 +1,10 @@
 package spring.service.impl;
 
 import org.springframework.boot.CommandLineRunner;
-import spring.entity.Order;
-import spring.dao.OrderDao;
-import spring.service.OrderService;
 import org.springframework.stereotype.Service;
+import spring.dao.OrderDao;
+import spring.entity.Order;
+import spring.service.OrderService;
 
 import javax.annotation.Resource;
 
