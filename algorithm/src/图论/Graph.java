@@ -20,6 +20,34 @@ public class Graph {
         this.maxIndex = -1;
     }
 
+    public static void main(String[] args) {
+        Graph graph = new Graph();
+
+        graph.addVertex("A");
+        graph.addVertex("B");
+        graph.addVertex("C");
+        graph.addVertex("D");
+        graph.addVertex("E");
+        graph.addVertex("F");
+        graph.addVertex("G");
+
+        graph.addAdjacent("A", "B", 4);
+        graph.addAdjacent("A", "D", 6);
+        graph.addAdjacent("A", "C", 6);
+        graph.addAdjacent("B", "E", 7);
+        graph.addAdjacent("B", "D", 1);
+        graph.addAdjacent("C", "D", 1);
+        graph.addAdjacent("C", "F", 5);
+        graph.addAdjacent("D", "E", 6);
+        graph.addAdjacent("D", "F", 4);
+        graph.addAdjacent("E", "G", 6);
+        graph.addAdjacent("F", "E", 1);
+        graph.addAdjacent("F", "G", 8);
+
+        graph.dijkstra("A", "G");
+
+    }
+
     // 插入顶点
     public boolean addVertex(String vertex) {
         if (this.vertex.contains(vertex)) {
@@ -244,33 +272,5 @@ public class Graph {
             System.out.print(this.index2Vertex.get(i));
         }
         System.out.println();
-    }
-
-    public static void main(String[] args) {
-        Graph graph = new Graph();
-
-        graph.addVertex("A");
-        graph.addVertex("B");
-        graph.addVertex("C");
-        graph.addVertex("D");
-        graph.addVertex("E");
-        graph.addVertex("F");
-        graph.addVertex("G");
-
-        graph.addAdjacent("A", "B", 4);
-        graph.addAdjacent("A", "D", 6);
-        graph.addAdjacent("A", "C", 6);
-        graph.addAdjacent("B", "E", 7);
-        graph.addAdjacent("B", "D", 1);
-        graph.addAdjacent("C", "D", 1);
-        graph.addAdjacent("C", "F", 5);
-        graph.addAdjacent("D", "E", 6);
-        graph.addAdjacent("D", "F", 4);
-        graph.addAdjacent("E", "G", 6);
-        graph.addAdjacent("F", "E", 1);
-        graph.addAdjacent("F", "G", 8);
-
-        graph.dijkstra("A", "G");
-
     }
 }

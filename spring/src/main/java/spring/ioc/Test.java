@@ -12,7 +12,7 @@ public class Test {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         MyAnnotationApplicationContext applicationContext = new MyAnnotationApplicationContext("spring.ioc");
-        DemoService demoService =(DemoService) applicationContext.getBean(DemoService.class);
+        DemoService demoService = (DemoService) applicationContext.getBean(DemoService.class);
         demoService.test();
     }
 }

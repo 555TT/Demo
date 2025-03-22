@@ -15,17 +15,15 @@ import java.util.concurrent.TimeUnit;
  */
 public class MyThreadPool implements Executor {
 
+    /**
+     * 线程集合
+     */
+    public HashSet<Thread> threads = new HashSet<>();
     Logger logger = LoggerFactory.getLogger(getClass());
     /**
      * 任务队列
      */
     private MyBlockingQueue<Runnable> taskQueue;
-
-    /**
-     * 线程集合
-     */
-    public HashSet<Thread> threads = new HashSet<>();
-
     /**
      * 核心线程数
      */
@@ -44,13 +42,13 @@ public class MyThreadPool implements Executor {
 
     @Override
     public void execute(Runnable command) {
-        synchronized (threads){
-            if(threads.size()<coreSize){
+        synchronized (threads) {
+            if (threads.size() < coreSize) {
                 Worker worker = new Worker(command);
                 worker.start();
                 threads.add(worker);
-            }else{
-                taskQueue.tryPut(command,rejectPolicy);
+            } else {
+                taskQueue.tryPut(command, rejectPolicy);
             }
         }
     }

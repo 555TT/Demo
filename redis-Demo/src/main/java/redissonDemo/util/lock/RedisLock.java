@@ -4,6 +4,7 @@ import cn.hutool.core.util.IdUtil;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.stereotype.Component;
+
 import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.Timer;
@@ -17,11 +18,11 @@ import java.util.concurrent.locks.Condition;
  */
 @Component
 public class RedisLock implements MyLock {
-    private static String lockName="redisLock";
+    private static String lockName = "redisLock";
     @Resource
     private RedisTemplate redisTemplate;
 
-    private Long expireTime=30L;
+    private Long expireTime = 30L;
 
     @Override
     public void lock() {
@@ -36,31 +37,31 @@ public class RedisLock implements MyLock {
     @Override
     public boolean tryLock() {
         try {
-            String uuid=IdUtil.simpleUUID()+":"+Thread.currentThread().getId();
-            String luaScript="if redis.call('exists',KEYS[1]) == 0 or redis.call('hexists',KEYS[1],ARGV[1]) == 1 then " +
+            String uuid = IdUtil.simpleUUID() + ":" + Thread.currentThread().getId();
+            String luaScript = "if redis.call('exists',KEYS[1]) == 0 or redis.call('hexists',KEYS[1],ARGV[1]) == 1 then " +
                     "redis.call('hincrby',KEYS[1],ARGV[1],1) " +
                     "redis.call('expire',KEYS[1],ARGV[2]) " +
                     "return 1 " +
                     "else " +
                     "return 0 " +
                     "end";
-            while (!(boolean) redisTemplate.execute(new DefaultRedisScript(luaScript, Boolean.class), Arrays.asList(lockName),uuid,String.valueOf(30))){
+            while (!(boolean) redisTemplate.execute(new DefaultRedisScript(luaScript, Boolean.class), Arrays.asList(lockName), uuid, String.valueOf(30))) {
                 Thread.sleep(50);
             }
             return true;
         } catch (Exception e) {
-            return  false;
+            return false;
         }
     }
 
     @Override
-    public boolean tryLock(long time, TimeUnit unit) throws InterruptedException{
+    public boolean tryLock(long time, TimeUnit unit) throws InterruptedException {
         return true;
     }
 
     @Override
     public void unlock() {
-        String uuid=IdUtil.simpleUUID()+":"+Thread.currentThread().getId();
+        String uuid = IdUtil.simpleUUID() + ":" + Thread.currentThread().getId();
         String script =
                 "if redis.call('HEXISTS',KEYS[1],ARGV[1]) == 0 then " +
                         "   return nil " +
@@ -69,7 +70,7 @@ public class RedisLock implements MyLock {
                         "else " +
                         "   return 0 " +
                         "end";
-        redisTemplate.execute(new DefaultRedisScript(script,Boolean.class),Arrays.asList(lockName),uuid);
+        redisTemplate.execute(new DefaultRedisScript(script, Boolean.class), Arrays.asList(lockName), uuid);
     }
 
     @Override
@@ -81,24 +82,23 @@ public class RedisLock implements MyLock {
     public String getType() {
         return "redis";
     }
-    private void renewExpire(){
+
+    private void renewExpire() {
         String script =
                 "if redis.call('HEXISTS',KEYS[1],ARGV[1]) == 1 then " +
                         "return redis.call('expire',KEYS[1],ARGV[2]) " +
                         "else " +
                         "return 0 " +
                         "end";
-        String uuidValue=IdUtil.simpleUUID()+":"+Thread.currentThread().getId();
+        String uuidValue = IdUtil.simpleUUID() + ":" + Thread.currentThread().getId();
 
-        new Timer().schedule(new TimerTask()
-        {
+        new Timer().schedule(new TimerTask() {
             @Override
-            public void run()
-            {
-                if ((Boolean)redisTemplate.execute(new DefaultRedisScript<>(script, Boolean.class), Arrays.asList(lockName),uuidValue,String.valueOf(expireTime))) {
+            public void run() {
+                if ((Boolean) redisTemplate.execute(new DefaultRedisScript<>(script, Boolean.class), Arrays.asList(lockName), uuidValue, String.valueOf(expireTime))) {
                     renewExpire();
                 }
             }
-        },(this.expireTime * 1000)/3);
+        }, (this.expireTime * 1000) / 3);
     }
 }

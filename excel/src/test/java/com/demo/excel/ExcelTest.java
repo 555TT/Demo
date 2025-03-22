@@ -3,6 +3,7 @@ package com.demo.excel;
 import com.demo.excel.service.ExcelService;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+
 import javax.annotation.Resource;
 
 /**
@@ -18,7 +19,7 @@ public class ExcelTest {
     private ExcelService excelService;
 
     @Test
-    public void test(){
+    public void test() {
     }
 
 }

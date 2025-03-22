@@ -16,22 +16,22 @@ import java.util.List;
  */
 @Slf4j
 public class Server {
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         ByteBuffer buffer = ByteBuffer.allocate(16);
         ServerSocketChannel ssc = ServerSocketChannel.open();
         ssc.configureBlocking(false);
         ssc.socket().bind(new InetSocketAddress(8080));
         List<SocketChannel> channels = new ArrayList<SocketChannel>();
-        while(true){
+        while (true) {
             SocketChannel socketChannel = ssc.accept();//非阻塞
-            if(socketChannel != null){
+            if (socketChannel != null) {
                 socketChannel.configureBlocking(false);
                 channels.add(socketChannel);
-                log.info("接收到客户端：",socketChannel);
+                log.info("接收到客户端：", socketChannel);
             }
-            for(SocketChannel channel : channels){
+            for (SocketChannel channel : channels) {
                 int write = channel.read(buffer);//阻塞
-                if(write > 0){
+                if (write > 0) {
                     buffer.flip();
                     ByteBufferUtil.debugAll(buffer);
                     buffer.compact();

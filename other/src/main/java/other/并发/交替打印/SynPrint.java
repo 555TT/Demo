@@ -11,7 +11,7 @@ public class SynPrint {
 
     public static void main(String[] args) {
         Thread thread1 = new Thread(() -> {
-            for (int i = 0; i <100; i++) {
+            for (int i = 0; i < 100; i++) {
                 synchronized (lock) {
                     try {
                         if (state % 2 != 0)

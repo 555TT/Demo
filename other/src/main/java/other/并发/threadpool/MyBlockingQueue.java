@@ -18,18 +18,14 @@ public class MyBlockingQueue<T> {
      * 任务队列
      */
     private final Deque<T> deque = new ArrayDeque<>();
-
-    /**
-     * 最大容量
-     */
-    private int capacity;
-
     /**
      * 锁
      */
     private final ReentrantLock lock = new ReentrantLock();
-
-
+    /**
+     * 最大容量
+     */
+    private int capacity;
     /**
      * 生产者条件变量
      */
@@ -124,9 +120,9 @@ public class MyBlockingQueue<T> {
     /**
      * 带超时时间的阻塞添加
      *
-     * @param task 任务
+     * @param task    任务
      * @param timeout 超时时间
-     * @param unit 事件单位
+     * @param unit    事件单位
      */
     public boolean offer(T task, long timeout, TimeUnit unit) {
         lock.lock();
@@ -159,16 +155,17 @@ public class MyBlockingQueue<T> {
             lock.unlock();
         }
     }
-    public void tryPut(T task,RejectPolicy<T> rejectPolicy){
+
+    public void tryPut(T task, RejectPolicy<T> rejectPolicy) {
         lock.lock();
         try {
-            if(deque.size()==capacity){
-                rejectPolicy.reject(this,task);
-            }else {
+            if (deque.size() == capacity) {
+                rejectPolicy.reject(this, task);
+            } else {
                 deque.addLast(task);
                 emptyWaitSet.signalAll();
             }
-        }finally {
+        } finally {
             lock.unlock();
         }
     }

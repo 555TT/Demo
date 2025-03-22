@@ -8,11 +8,11 @@
 
     <!-- 设置日志级别 -->
     <root level="info">
-        <appender-ref ref="STDOUT" />
+        <appender-ref ref="STDOUT"/>
     </root>
 
     <!-- 可以对不同的包设置不同的日志级别 -->
     <logger name="com.example" level="debug" additivity="false">
-        <appender-ref ref="STDOUT" />
+        <appender-ref ref="STDOUT"/>
     </logger>
 </configuration>

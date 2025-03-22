@@ -19,8 +19,8 @@ public class DemoController {
     private Producer producer;
 
     @GetMapping("/send")
-    public String send(String exchange,String routingKey){
-        producer.sendMessage(exchange,routingKey);
+    public String send(String exchange, String routingKey) {
+        producer.sendMessage(exchange, routingKey);
         return "发送消息成功";
     }
 }

@@ -1,11 +1,12 @@
 package singleton.broken;
 
-import singleton.EnumSingleton;
 import singleton.LazySingleton;
 
 import java.io.*;
 
-/**序列化破坏单例
+/**
+ * 序列化破坏单例
+ *
  * @author: 小手WA凉
  * @create: 2024-07-06
  */
@@ -19,7 +20,7 @@ public class BrokenSingletonTest {
         LazySingleton instance2 = (LazySingleton) ois.readObject();
         System.out.println(instance);
         System.out.println(instance2);
-        System.out.println(instance2==instance);
+        System.out.println(instance2 == instance);
 //        EnumSingleton instance = EnumSingleton.getInstance();
 //        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("singletion"));
 //        oos.writeObject(instance);

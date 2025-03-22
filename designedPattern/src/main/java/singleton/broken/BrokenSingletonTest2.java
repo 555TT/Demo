@@ -1,12 +1,13 @@
 package singleton.broken;
 
 import singleton.EnumSingleton;
-import singleton.LazySingleton;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-/**反射破坏单例模式
+/**
+ * 反射破坏单例模式
+ *
  * @author: 小手WA凉
  * @create: 2024-07-06
  */
@@ -22,11 +23,11 @@ public class BrokenSingletonTest2 {
 //        System.out.println(instance==refInstance);
         EnumSingleton instance = EnumSingleton.getInstance();
         Class<EnumSingleton> singletonClass = EnumSingleton.class;
-        Constructor<EnumSingleton> constructor = singletonClass.getDeclaredConstructor(String.class,int.class);
+        Constructor<EnumSingleton> constructor = singletonClass.getDeclaredConstructor(String.class, int.class);
         constructor.setAccessible(true);
         EnumSingleton refInstance = constructor.newInstance();
         System.out.println(instance);
         System.out.println(refInstance);
-        System.out.println(instance==refInstance);
+        System.out.println(instance == refInstance);
     }
 }

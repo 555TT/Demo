@@ -13,7 +13,7 @@ public class TestFilesWalkFileTree {
     public static void main(String[] args) throws IOException {
         AtomicInteger dirCount = new AtomicInteger();
         AtomicInteger fileCount = new AtomicInteger();
-        Files.walkFileTree(Paths.get("E:\\Java\\JDK\\jdk17"),new SimpleFileVisitor<Path>(){//观察者模式
+        Files.walkFileTree(Paths.get("E:\\Java\\JDK\\jdk17"), new SimpleFileVisitor<Path>() {//观察者模式
             @Override
             public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
                 System.out.println(dir);
@@ -28,7 +28,7 @@ public class TestFilesWalkFileTree {
                 return super.visitFile(file, attrs);
             }
         });
-        System.out.println("fileCount"+ fileCount.get());
-        System.out.println("dirCount"+ dirCount.get());
+        System.out.println("fileCount" + fileCount.get());
+        System.out.println("dirCount" + dirCount.get());
     }
 }

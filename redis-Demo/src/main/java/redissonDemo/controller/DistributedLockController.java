@@ -16,7 +16,7 @@ public class DistributedLockController {
     private DistributedLockService service;
 
     @GetMapping("/inventory/sale")
-    public void sale(){
-         service.sale();
+    public void sale() {
+        service.sale();
     }
 }

@@ -39,7 +39,7 @@ public class ProducerTransactionTest {
             }
             //  提交事务
             producer.commitTransaction();
-            int i=1/0;
+            int i = 1 / 0;
         } catch (Exception e) {
             e.printStackTrace();
             //  终止事务

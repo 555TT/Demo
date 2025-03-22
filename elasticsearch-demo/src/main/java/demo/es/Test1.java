@@ -2,14 +2,13 @@ package demo.es;
 
 import demo.es.request.BookRequest;
 import io.searchbox.client.JestClient;
-import io.searchbox.core.Search;
-import io.searchbox.core.SearchResult;
 import io.searchbox.indices.CreateIndex;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
 import javax.annotation.Resource;
 import java.io.IOException;
 
@@ -31,8 +30,9 @@ public class Test1 {
         jestClient.execute(book);
         return "ok";
     }
+
     @PostMapping("search")
-    public String search(@RequestBody BookRequest bookRequest) throws Exception{
+    public String search(@RequestBody BookRequest bookRequest) throws Exception {
 
     }
 }

@@ -1,9 +1,11 @@
 package sa.service;
+
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
+
 import java.io.IOException;
 
 /**
@@ -18,16 +20,15 @@ public class Consumer {
         long deliveryTag = message.getMessageProperties().getDeliveryTag();
         Boolean redelivered = message.getMessageProperties().isRedelivered();
         try {
-            log.info("消费消息：{}",dataString);
-            channel.basicAck(deliveryTag,false);
+            log.info("消费消息：{}", dataString);
+            channel.basicAck(deliveryTag, false);
             log.info("成功消费消息");
         } catch (Exception e) {
             log.info("消费消息失败");
-            if(redelivered){
-                channel.basicNack(deliveryTag,false,false);
-            }
-            else {
-                channel.basicNack(deliveryTag,false,true);
+            if (redelivered) {
+                channel.basicNack(deliveryTag, false, false);
+            } else {
+                channel.basicNack(deliveryTag, false, true);
             }
         }
     }

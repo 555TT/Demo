@@ -15,16 +15,16 @@ import javax.annotation.Resource;
  */
 @Slf4j
 @Component
-public class ConfirmConfig implements RabbitTemplate.ConfirmCallback ,RabbitTemplate.ReturnsCallback, InitializingBean {
+public class ConfirmConfig implements RabbitTemplate.ConfirmCallback, RabbitTemplate.ReturnsCallback, InitializingBean {
     @Resource
     private RabbitTemplate rabbitTemplate;
 
     @Override
     public void confirm(CorrelationData correlationData, boolean ack, String s) {
-        if(ack){
+        if (ack) {
             log.info("消息投递到交换机上成功");
-        }else {
-            log.info("消息投递上交换机上失败，原因：{}",s);
+        } else {
+            log.info("消息投递上交换机上失败，原因：{}", s);
         }
     }
 

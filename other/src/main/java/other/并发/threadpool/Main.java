@@ -22,7 +22,7 @@ public class Main {
             });
         }
         Thread.sleep(2000L);
-        log.info("线程数量:{}",myThreadPool.threads.size());
+        log.info("线程数量:{}", myThreadPool.threads.size());
 
     }
 }

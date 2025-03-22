@@ -10,8 +10,9 @@
 
     <!--查询单个-->
     <select id="queryById" resultMap="OrderMap">
-        select
-id, product_name, num
+        select id,
+               product_name,
+               num
         from `order`
         where id = #{id}
     </select>
@@ -43,7 +44,7 @@ id, product_name, num
         insert into `order`(product_name, num)
         values
         <foreach collection="entities" item="entity" separator=",">
-        (#{entity.productName}, #{entity.num})
+            (#{entity.productName}, #{entity.num})
         </foreach>
     </insert>
 
@@ -54,8 +55,8 @@ id, product_name, num
             (#{entity.productName}, #{entity.num})
         </foreach>
         on duplicate key update
-product_name = values(product_name),
-num = values(num)
+        product_name = values(product_name),
+        num = values(num)
     </insert>
 
     <!--通过主键修改数据-->
@@ -74,7 +75,9 @@ num = values(num)
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from `order` where id = #{id}
+        delete
+        from `order`
+        where id = #{id}
     </delete>
 
 </mapper>

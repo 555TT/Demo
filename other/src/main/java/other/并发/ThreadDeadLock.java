@@ -11,6 +11,7 @@ package other.并发;
 public class ThreadDeadLock {
     final static Object lock1 = new Object();
     final static Object lock2 = new Object();
+
     public static void deadLock() {
         new Thread(() -> {
             synchronized (lock1) {

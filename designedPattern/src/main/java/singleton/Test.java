@@ -8,6 +8,6 @@ public class Test {
     public static void main(String[] args) {
         LazySingleton instance = LazySingleton.getInstance();
         LazySingleton instance1 = LazySingleton.getInstance();
-        System.out.println(instance1==instance);
+        System.out.println(instance1 == instance);
     }
 }

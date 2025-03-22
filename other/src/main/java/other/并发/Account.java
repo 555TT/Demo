@@ -6,20 +6,22 @@ package other.并发;
  */
 public class Account {
     private double balance;
-    public void deposit(double amount) {
-        this.balance += amount;
-    }
-    public double getBalance() {
-        return balance;
-    }
 
     public static void main(String[] args) {
         Account account = new Account();
-        for(int i=0;i<100;i++){
-            new Thread(()->{
+        for (int i = 0; i < 100; i++) {
+            new Thread(() -> {
                 account.deposit(2);
             }).start();
         }
+    }
+
+    public void deposit(double amount) {
+        this.balance += amount;
+    }
+
+    public double getBalance() {
+        return balance;
     }
 }
 

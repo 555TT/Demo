@@ -1,9 +1,9 @@
 package spring.entity;
- 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
- 
+
 /**
  * (Order)实体类
  *
@@ -14,10 +14,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Order {
- 
+
     private Integer id;
- 
+
     private String productName;
- 
+
     private Integer num;
 }

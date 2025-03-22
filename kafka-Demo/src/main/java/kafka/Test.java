@@ -42,7 +42,7 @@ public class Test {
         config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
         config.put(ConsumerConfig.GROUP_ID_CONFIG, "xiao");
         config.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
-        config.put(ConsumerConfig.ISOLATION_LEVEL_CONFIG,"read_committed");
+        config.put(ConsumerConfig.ISOLATION_LEVEL_CONFIG, "read_committed");
         config.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false");
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(config);
         consumer.subscribe(Collections.singletonList("test-tran"));

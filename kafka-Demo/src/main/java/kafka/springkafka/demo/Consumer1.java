@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 public class Consumer1 {
 
 
-    @KafkaListener(topics = "test-tran",groupId = "xiao")
-    public void consume(String message){
-        System.out.println("consumer1:"+message);
+    @KafkaListener(topics = "test-tran", groupId = "xiao")
+    public void consume(String message) {
+        System.out.println("consumer1:" + message);
     }
 }
