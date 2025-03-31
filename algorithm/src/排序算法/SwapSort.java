@@ -1,15 +1,17 @@
 package 排序算法;
 
 /**
- * 快速排序
- * 注意点：while循环中线从右往左找；一定要先将基准元素交换到最左边，然后while退出后再将基准元素交换到正确位置
- * 平均时间复杂度为O(nlogn),最坏为O(n2)
+ * 交换排序：冒泡排序和快速排序
  *
  * @author: wanghaoran1
  * @create: 2025-02-26
  */
-public class QuickSort {
+public class SwapSort {
     /**
+     * 快速排序
+     * 注意点：while循环中线从右往左找；一定要先将基准元素交换到最左边，然后while退出后再将基准元素交换到正确位置
+     * 平均时间复杂度为O(nlogn),最坏为O(n2)
+     * 不稳定
      * @param arr   要排序的数组
      * @param left  左索引
      * @param right 右索引
@@ -50,9 +52,26 @@ public class QuickSort {
         nums[j] = temp;
     }
 
+    /**
+     * 冒泡排序
+     * 稳定
+     * @param nums
+     */
+    private static void bubbleSort(int[] nums) {
+        int n = nums.length;
+        for (int i = n - 1; i > 0; i--) {
+            for (int j = 0; j < i; j++) {
+                //如果前一个比后一个大，则交换，最终末尾元素是当前数组的最大值
+                if (nums[j] > nums[j + 1]) {
+                    swap(nums, j, j + 1);
+                }
+            }
+        }
+    }
+
     public static void main(String[] args) {
         int[] arr = {30, 40, 60, 10, 20, 50, 60};
-        quickSort(arr, 0, arr.length - 1);
+        bubbleSort(arr);
         for (int num : arr) {
             System.out.printf("%d ", num);
         }

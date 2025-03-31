@@ -1,7 +1,7 @@
 package 排序算法;
 
 /**
- * 归并排序
+ * 二路归并排序
  * 稳定。O(n*logn)
  */
 public class MergeSort {
@@ -14,11 +14,11 @@ public class MergeSort {
     public static int[] mergeSort(int[] array, int left, int right) {
         int mid = (left + right) / 2;
         if (left < right) {
-            // 先对左边进行归并排序
+            // 分割左半部分
             mergeSort(array, left, mid);
-            // 再对右边归并排序
+            // 分割右半部分
             mergeSort(array, mid + 1, right);
-            //对左右两边已经进行归并排序的有序数组进行合并
+            //对左右两个已经排好序的数组进行进行合并
             mergeArray(array, left, mid, right);
         }
         return array;
@@ -60,7 +60,7 @@ public class MergeSort {
         }
     }
 
-    // 测试算法
+    // 测试
     public static void main(String[] args) {
         int[] number = {4, 2, 6, 1, 9, 7, 8, 0, 3, 5};
         System.out.println("归并排序之前：");
