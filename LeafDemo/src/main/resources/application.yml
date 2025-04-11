@@ -1,0 +1,11 @@
+leaf:
+  name: test2
+  segment:
+    enable: true
+    url: jdbc:mysql://localhost:3306/leaf?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
+    username: root
+    password: wanghaoran666
+  snowflake:
+    enable: true
+    address: 192.168.200.130
+    port: 2181
