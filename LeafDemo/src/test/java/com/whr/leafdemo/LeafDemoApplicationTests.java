@@ -1,6 +1,5 @@
 package com.whr.leafdemo;
 
-import com.sankuai.inf.leaf.plugin.annotation.EnableLeafServer;
 import com.sankuai.inf.leaf.service.SegmentService;
 import com.sankuai.inf.leaf.service.SnowflakeService;
 import org.junit.jupiter.api.Test;
@@ -27,6 +26,7 @@ class LeafDemoApplicationTests {
             System.out.println("id2:" + id2);
         }
     }
+
     @Test
     public void test2() {
         // 生成 1000 个ID
