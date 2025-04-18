@@ -1,4 +1,4 @@
-package other.并发;
+package other.juc;
 
 
 import lombok.extern.slf4j.Slf4j;

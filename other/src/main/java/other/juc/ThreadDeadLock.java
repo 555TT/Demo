@@ -1,4 +1,4 @@
-package other.并发;
+package other.juc;
 
 /**
  * @author: 小手WA凉

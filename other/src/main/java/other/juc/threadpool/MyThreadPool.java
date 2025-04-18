@@ -1,4 +1,4 @@
-package other.并发.threadpool;
+package other.juc.threadpool;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

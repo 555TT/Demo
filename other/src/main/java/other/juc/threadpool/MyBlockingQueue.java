@@ -1,4 +1,4 @@
-package other.并发.threadpool;
+package other.juc.threadpool;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
