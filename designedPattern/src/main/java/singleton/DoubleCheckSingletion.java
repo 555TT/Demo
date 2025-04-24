@@ -7,7 +7,7 @@ package singleton;
  * @create: 2024-07-06
  */
 public class DoubleCheckSingletion {
-    private static DoubleCheckSingletion doubleCheckSingletion = null;
+    private volatile static DoubleCheckSingletion doubleCheckSingletion = null;
 
     private DoubleCheckSingletion() {
 
